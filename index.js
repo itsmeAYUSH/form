@@ -5,23 +5,58 @@ btn.addEventListener('click', (e)=>{
     document.querySelector('.btn').style.background = "black";
 });
 
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    const localStorageObj = localStorage;
+    const localstoragekeys  = Object.keys(localStorageObj)
+
+    for(var i =0; i< localstoragekeys.length; i++){
+        const key = localstoragekeys[i]
+        const userDetailsString = localStorageObj[key];
+        const userDetailsObj = JSON.parse(userDetailsString);
+        addUser(userDetailsObj)
+    }
+})
+
 function saveToLocalStorage(event){
     event.preventDefault();
     const name = event.target.username.value;
     const email = event.target.emailId.value;
 
-    let user = {
-        name: name,
-        email: email,
+    let obj = {
+        name,
+        email,
       }
-      localStorage.setItem(user.name,JSON.stringify(user));
-      addUser(user);
+      localStorage.setItem(obj.email,JSON.stringify(obj));
+      addUser(obj);
 }
 
-
-function addUser(user1){
+function addUser(user){
     const parentNode = document.getElementById('listOfUsers');
-    const childHTML = `<li> ${user1.name} - ${user1.email} </li>`;
+    const childHTML = `<li id=${user.email}> ${user.name}- ${user.email}
+    <button class="editbtn" onCLick=editUser('${user.name}','${user.email}')>Edit</button>
+    <button class="deletebtn" onCLick=deleteUser('${user.email}')>X</button>
+     
+    </li>`;
     parentNode.innerHTML =  parentNode.innerHTML + childHTML;
 }
 
+function deleteUser(emailId){
+    // console.log(emailId)
+    localStorage.removeItem(emailId);
+    removeUser(emailId);
+}
+
+function removeUser(emailId){
+    const parentNode = document.getElementById('listOfUsers');
+    const deletingChildNode = document.getElementById(emailId);
+    parentNode.removeChild(deletingChildNode);
+    
+}   
+function editUser(name,emailId){
+    document.getElementById('username').value = name;
+    document.getElementById('emailId').value = emailId;
+    deleteUser(emailId);
+
+}
