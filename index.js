@@ -33,6 +33,9 @@ function saveToLocalStorage(event){
 }
 
 function addUser(user){
+    if(localStorage.getItem(user.email)!== null){
+        removeUser(user.email);
+    }
     const parentNode = document.getElementById('listOfUsers');
     const childHTML = `<li id=${user.email}> ${user.name}- ${user.email}
     <button class="editbtn" onCLick=editUser('${user.name}','${user.email}')>Edit</button>
@@ -51,7 +54,10 @@ function deleteUser(emailId){
 function removeUser(emailId){
     const parentNode = document.getElementById('listOfUsers');
     const deletingChildNode = document.getElementById(emailId);
-    parentNode.removeChild(deletingChildNode);
+    if(deletingChildNode){
+        parentNode.removeChild(deletingChildNode);
+
+    }
     
 }   
 function editUser(name,emailId){
