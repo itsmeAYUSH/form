@@ -1,4 +1,4 @@
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,30 +10,23 @@
 
 <body>
     <div class="main">
-        <form action="" onsubmit="saveToLocalStorage(event)" class="form">
+        <form  onsubmit="saveToLocalStorage(event)" class="form">
             <h2>Form</h2>
 
             <label>Name:</label>
-            <input type="text" name="username" required>
+            <input id="username" type="text" name="username" required>
             <br>
             <label>Email:</label>
-            <input type="email" name="emailId" required>
+            <input id="emailId" type="email" name="emailId" required>
             <br>
-            <button type="submit" class="btn">Submit</button>
-            <div class="tags">
-                <p>submitted form appears here:</p>
-                <ul id="listOfUsers">
-                    
-                </ul>
-                
-            </div>
-
-        </form>
+            <button class="btn">Submit</button>
+            <p>submitted names appear here:</p>
+            <ol style="list-style-type:upper-roman" id="listOfUsers">
+              
+            </ol>
+        </form> 
+       
     </div>
-
-
-
-
 
     <script src="./index.js"></script>
 </body>
