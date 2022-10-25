@@ -29,7 +29,7 @@ function saveToLocalStorage(event){
         name,
         email,
       }
-      axios.post("https://crudcrud.com//ab1eaa81c6ea4d7896554e986d0dd28d/appointmentDate/",obj)
+      axios.post("https://crudcrud.com/api/ab1eaa81c6ea4d7896554e986d0dd28d/appointmentDate/",obj)
       .then((response)=>{
         addUser(response.data)
           console.log(response)
