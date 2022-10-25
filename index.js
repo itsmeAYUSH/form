@@ -7,17 +7,24 @@ btn.addEventListener('click', (e)=>{
 
 
 
-window.addEventListener("DOMContentLoaded", () => {
-    const localStorageObj = localStorage;
-    const localstoragekeys  = Object.keys(localStorageObj)
 
-    for(var i =0; i< localstoragekeys.length; i++){
-        const key = localstoragekeys[i]
-        const userDetailsString = localStorageObj[key];
+window.addEventListener("DOMContentLoaded", () => {
+    // const localStorageObj = localStorage;
+    // const localstoragekeys  = Object.keys(localStorageObj)
+
+    // for(var i =0; i< localstoragekeys.length; i++){
+    //     const key = localstoragekeys[i]
+    //     const userDetailsString = localStorageObj[key];
     
-        const userDetailsObj = JSON.parse(userDetailsString);
-        addUser(userDetailsObj)
-    }
+    //     const userDetailsObj = JSON.parse(userDetailsString);
+    //     addUser(userDetailsObj)
+    // }
+    axios.get("https://crudcrud.com/api/dd7209a8d9bb4c13a757fd43ae91bf4f/appointmentDate/")
+    .then((response)=>{
+        for(var i=0 ; i<response.data.length ; i++){
+            addUser(response.data[i])
+        }
+    })
 })
 
 function saveToLocalStorage(event){
