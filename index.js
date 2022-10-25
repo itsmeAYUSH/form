@@ -54,12 +54,13 @@ function saveToLocalStorage(event){
 //////////////////////////////DISPLAY USER TO SCREEN //////////////////////////////
 
 function addUser(user){
-    if(localStorage.getItem(user.email)!== null){
-        removeUser(user.email);
-    }
+    // if(localStorage.getItem(user.email)!== null){
+    //     removeUser(user.email);
+    // }
+    
     const parentNode = document.getElementById('listOfUsers');
     const childHTML = `<li id=${user._id}> ${user.name}- ${user.email}
-    <button class="editbtn" onCLick=editUser('${user.name}','${user.email}')>Edit</button>
+    <button class="editbtn" onCLick=editUser('${user.name}','${user.email}','${user._id}')>Edit</button>
     <button class="deletebtn" onCLick=deleteUser('${user._id}')>X</button>
      
     </li>`;
@@ -90,9 +91,10 @@ function removeUser(userId){
 
 //////////////////////////////EDIT USER //////////////////////////////
 
-function editUser(name,emailId){
+function editUser(name,emailId,userId){
     document.getElementById('username').value = name;
     document.getElementById('emailId').value = emailId;
-    deleteUser(emailId);
-
+    deleteUser(userId);
 }
+
+
