@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     for(var i =0; i< localstoragekeys.length; i++){
         const key = localstoragekeys[i]
         const userDetailsString = localStorageObj[key];
+    
         const userDetailsObj = JSON.parse(userDetailsString);
         addUser(userDetailsObj)
     }
@@ -28,8 +29,18 @@ function saveToLocalStorage(event){
         name,
         email,
       }
-      localStorage.setItem(obj.email,JSON.stringify(obj));
-      addUser(obj);
+      axios.post("https://crudcrud.com//ab1eaa81c6ea4d7896554e986d0dd28d/appointmentDate/",obj)
+      .then((response)=>{
+        addUser(response.data)
+          console.log(response)
+      })
+      .catch((err)=>{
+        const er = document.getElementById('error');
+        er.innerHTML = 'Something Went Wrong';
+          console.log(err);
+      })
+    //   localStorage.setItem(obj.email,JSON.stringify(obj));
+    //   addUser(obj);
 }
 
 function addUser(user){
