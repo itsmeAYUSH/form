@@ -7,7 +7,6 @@ btn.addEventListener('click', (e)=>{
 
 
 
-
 window.addEventListener("DOMContentLoaded", () => {
     // const localStorageObj = localStorage;
     // const localstoragekeys  = Object.keys(localStorageObj)
@@ -19,7 +18,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //     const userDetailsObj = JSON.parse(userDetailsString);
     //     addUser(userDetailsObj)
     // }
-    axios.get("https://crudcrud.com/api/dd7209a8d9bb4c13a757fd43ae91bf4f/appointmentDate/")
+    axios.get("https://crudcrud.com/api/30c361cd93b140a587f76c58888c4ff0/appointmentDate/")
     .then((response)=>{
         for(var i=0 ; i<response.data.length ; i++){
             addUser(response.data[i])
@@ -36,7 +35,7 @@ function saveToLocalStorage(event){
         name,
         email,
       }
-      axios.post("https://crudcrud.com/api/dd7209a8d9bb4c13a757fd43ae91bf4f/appointmentDate/",obj)
+      axios.post("https://crudcrud.com/api/30c361cd93b140a587f76c58888c4ff0/appointmentDate/",obj)
       .then((response)=>{
         addUser(response.data)
           console.log(response)
@@ -64,7 +63,6 @@ function addUser(user){
 }
 
 function deleteUser(emailId){
-    // console.log(emailId)
     localStorage.removeItem(emailId);
     removeUser(emailId);
 }
